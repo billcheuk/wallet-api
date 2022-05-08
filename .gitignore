@@ -1,0 +1,17 @@
+# compiled output
+bin
+node_modules
+
+# logs
+logs
+*.log
+
+# test case coverage
+coverage
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

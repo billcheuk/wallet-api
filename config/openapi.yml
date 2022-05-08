@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+    title: Wallet - API server
+    description: Wallet - API server
+    termsOfService: http://swagger.io/terms/
+    contact:
+        email: billcheuk@qq.com
+    license:
+        name: MIT
+        url: https://opensource.org/licenses/MIT
+    version: 1.0.0
+externalDocs:
+    description: Find out more about Swagger
+    url: http://swagger.io
+servers:
+    - url: /api/v1
+
+tags:
+    - name: address
+      description: address APIs
+
+paths:
+    /p2wpkh:
+        post:
+            description: Generate a Hierarchical Deterministic (HD) Segregated Witness (SegWit) bitcoin address from a given seed and path
+            tags:
+                - address
+            operationId: p2wpkh
+            requestBody:
+                description: requestBody
+                content:
+                    application/x-www-form-urlencoded:
+                        schema:
+                            type: object
+                            required:
+                                - seed
+                                - path
+                            properties:
+                                seed:
+                                    description: Root Seed
+                                    type: string
+                                    example: bb432495b8d81951b25ff3ba2d6dde9f30680cdaad66d71053454fa507668cd98d5c0b73bb2c509d68d65cb879110623be324e0f76bd0a7af122991f99cd7089
+                                path:
+                                    description: HD wallet path
+                                    type: string
+                                    example: m/44'/0'/0'/0/0
+            responses:
+                200:
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    p2wpkh:
+                                        example: bc1qqunvanrnp0r5n0t5ml3dfnk4pdpxfs7wzdkyqj
+
+    /p2sh:
+        post:
+            description: Generate an n-out-of-m Multisignature (multi-sig) Pay-To-Script-Hash (P2SH) bitcoin address, where n, m and public keys can be specified
+            tags:
+                - address
+            operationId: p2sh
+            requestBody:
+                description: requestBody
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            required:
+                                - m
+                                - pubKeys
+                            properties:
+                                m:
+                                    description: m is the threshold of signatures required for validation
+                                    type: number
+                                    example: 2
+                                pubKeys:
+                                    description: list of public key
+                                    type: array
+                                    example:
+                                        - 0491bba2510912a5bd37da1fb5b1673010e43d2c6d812c514e91bfa9f2eb129e1c183329db55bd868e209aac2fbc02cb33d98fe74bf23f0c235d6126b1d8334f86
+                                        - 04865c40293a680cb9c020e7b1e106d8c1916d3cef99aa431a56d253e69256dac09ef122b1a986818a7cb624532f062c1d1f8722084861c5c3291ccffef4ec6874
+                                        - 048d2455d2403e08708fc1f556002f1b6cd83f992d085097f9974ab08a28838f07896fbab08f39495e15fa6fad6edbfb1e754e35fa1c7844c41f322a1863d46213
+
+            responses:
+                200:
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    p2sh:
+                                        example: 3QJmV3qfvL9SuYo34YihAf3sRCW3qSinyC
+
