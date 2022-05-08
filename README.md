@@ -9,6 +9,7 @@
     - [Run Server in Production](#run-server-in-production)
     - [Run Test Case](#run-test-case)
     - [Run Test Case Coverage](#run-test-case-coverage)
+  - [API Documents](#api-documents)
   - [Query Example](#example)
     - [1. Generate a HD SegWit Address](#1-generate-a-hd-segwit-address)
     - [2. Generate a multi-sig P2SH Address](#2-generate-a-multi-sig-p2sh-address)
@@ -61,7 +62,11 @@ yarn coverage
 ```
 
 ---
+## API Documents
+- DEV: http://localhost:3000/api-doc
+- PROD: http://localhost:80/api-doc
 
+---
 ## Example
 ### 1. Generate a HD SegWit Address
 - curl post /api/v1/p2wpkh
